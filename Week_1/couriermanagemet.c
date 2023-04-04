@@ -171,6 +171,81 @@ void search_package() {
 
 void update_package() {
     //Code to update the status of a package
+    char id[10];
+    int found = 0, option;
+    struct Package package;
+    FILE *fp, *temp;
+
+    printf("\nEnter package ID: ");
+    scanf("%s", id);
+
+    fp = fopen("packages.dat", "rb");
+    if(fp == NULL) {
+        printf("Error opening file!");
+        return;
+    }
+
+    temp = fopen("temp.dat", "wb");
+    if(temp == NULL) {
+        printf("Error opening file!");
+        return;
+    }
+
+    while(fread(&package, sizeof(package), 1, fp)) {
+        if(strcmp(package.id, id) == 0) {
+            found = 1;
+            printf("\nPackage Found\n");
+            printf("1. Update Sender Name\n");
+            printf("2. Update Receiver Name\n");
+            printf("3. Update Delivery Address\n");
+            printf("4. Update Package Weight\n");
+            printf("Enter your choice: ");
+            scanf("%d", &option);
+
+            switch(option) {
+                case 1:
+                    printf("\nEnter new sender name: ");
+                    scanf(" %[^\n]", package.sender);
+                    break;
+                case 2:
+                    printf("\nEnter new receiver name: ");
+                    scanf(" %[^\n]", package.receiver);
+                    break;
+                case 3:
+                    printf("\nEnter new delivery address: ");
+                    scanf(" %[^\n]", package.address);
+                    break;
+                case 4:
+                    printf("\nEnter new package weight: ");
+                    scanf("%f", &package.weight);
+                    break;
+                default:
+                    printf("\nInvalid choice!\n");
+                    return;
+            }
+
+            printf("\nPackage Updated\n");
+            printf("Package ID: %s\n", package.id);
+            printf("Sender Name: %s\n", package.sender);
+            printf("Receiver Name: %s\n", package.receiver);
+            printf("Delivery Address: %s\n", package.address);
+            printf("Package Weight: %.2f kg\n", package.weight);
+            printf("Package Status: %s\n", package.status);
+        }
+
+        fwrite(&package, sizeof(package), 1, temp);
+    }
+
+    if(!found) {
+        printf("\nPackage Not Found\n");
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("packages.dat");
+    rename("temp.dat", "packages.dat");
+
 }
 
 void delete_package() {

@@ -294,4 +294,21 @@ void delete_package() {
 
 void display_packages() {
     //Code to display all packages in the system
+    struct Package package;
+    FILE *fp;
+
+    fp = fopen("packages.dat", "rb");
+    if(fp == NULL) {
+        printf("Error opening file!");
+        return;
+    }
+
+    printf("\nID\tSender\tReceiver\tWeight\tStatus\n");
+    printf("--------------------------------------------------\n");
+
+    while(fread(&package, sizeof(package), 1, fp)) {
+        printf("%s\t%s\t%s\t%.2f\t%s\n", package.id, package.sender, package.receiver, package.weight, package.status);
+    }
+
+    fclose(fp);
 }

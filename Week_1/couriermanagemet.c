@@ -63,11 +63,111 @@ int main() {
 
 void add_package() {
     //Code to add a new package
+    struct Package package;
+    FILE *fp;    //Give the file path to save the data input from the user
+
+    printf("\nEnter package ID: ");
+    scanf("%s", package.id);
+    printf("Enter sender name: ");
+    scanf(" %[^\n]", package.sender);
+    printf("Enter receiver name: ");
+    scanf(" %[^\n]", package.receiver);
+    printf("Enter delivery address: ");
+    scanf(" %[^\n]", package.address);
+    printf("Enter package weight: ");
+    scanf("%f", &package.weight);
+    strcpy(package.status, "In Transit");
+
+    fp = fopen("packages.dat", "ab");
+    if(fp == NULL) {
+        printf("Error opening file!");
+        return;
+    }
+
+    fwrite(&package, sizeof(package), 1, fp);
+
+    printf("\nPackage added successfully!\n");
+
+    fclose(fp);
 }
+
 
 void search_package() {
     //Code to search for a package by ID, sender, or receiver
+    char id[10], name[50];
+    int option, found = 0;
+    struct Package package;
+    FILE *fp;
+
+    printf("\nSearch Package\n");
+    printf("1. Search by ID\n");
+    printf("2. Search by Sender Name\n");
+    printf("3. Search by Receiver Name\n");
+    printf("Enter your choice: ");
+    scanf("%d", &option);
+
+    switch(option) {
+        case 1:
+            printf("\nEnter package ID: ");
+            scanf("%s", id);
+            break;
+        case 2:
+            printf("\nEnter sender name: ");
+            scanf(" %[^\n]", name);
+            break;
+        case 3:
+            printf("\nEnter receiver name: ");
+            scanf(" %[^\n]", name);
+            break;
+        default:
+            printf("\nInvalid choice!\n");
+            return;
+    }
+
+    fp = fopen("packages.dat", "rb");
+    if(fp == NULL) {
+        printf("Error opening file!");
+        return;
+    }
+
+    while(fread(&package, sizeof(package), 1, fp)) {
+        switch(option) {
+            case 1:
+                if(strcmp(package.id, id) == 0) {
+                    found = 1;
+                }
+                break;
+            case 2:
+                if(strcmp(package.sender, name) == 0) {
+                    found = 1;
+                }
+                break;
+            case 3:
+                if(strcmp(package.receiver, name) == 0) {
+                    found = 1;
+                }
+                break;
+        }
+
+        if(found) {
+            printf("\nPackage Found\n");
+            printf("Package ID: %s\n", package.id);
+            printf("Sender Name: %s\n", package.sender);
+            printf("Receiver Name: %s\n", package.receiver);
+            printf("Delivery Address: %s\n", package.address);
+            printf("Package Weight: %.2f kg\n", package.weight);
+            printf("Package Status: %s\n", package.status);
+            break;
+        }
+    }
+
+    if(!found) {
+        printf("\nPackage Not Found\n");
+    }
+
+    fclose(fp);
 }
+
 
 void update_package() {
     //Code to update the status of a package

@@ -250,6 +250,46 @@ void update_package() {
 
 void delete_package() {
     //Code to delete a package
+    char id[10];
+    int found = 0;
+    struct Package package;
+    FILE *fp, *temp;
+
+    printf("\nEnter package ID: ");
+    scanf("%s", id);
+
+    fp = fopen("packages.dat", "rb");
+    if(fp == NULL) {
+        printf("Error opening file!");
+        return;
+    }
+
+    temp = fopen("temp.dat", "wb");
+    if(temp == NULL) {
+        printf("Error opening file!");
+        return;
+    }
+
+    while(fread(&package, sizeof(package), 1, fp)) {
+        if(strcmp(package.id, id) != 0) {
+            fwrite(&package, sizeof(package), 1, temp);
+        } else {
+            found = 1;
+        }
+    }
+
+    if(!found) {
+        printf("\nPackage Not Found\n");
+    } else {
+        printf("\nPackage Deleted\n");
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("packages.dat");
+    rename("temp.dat", "packages.dat");
+
 }
 
 void display_packages() {

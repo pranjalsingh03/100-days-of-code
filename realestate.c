@@ -30,3 +30,18 @@ void add_record(struct property *prop, int *count)
     (*count)++;
     printf("\nRecord added successfully!\n");
 }
+
+// function to display all available properties
+void display_properties(struct property *prop, int count) {
+    if(count == 0) {
+        printf("\nNo properties available.\n");
+        return;
+    }
+    printf("\nAvailable Properties:\n");
+    printf("----------------------------------------------------------------------\n");
+    printf("Property Type\tLocation\t\tBHK\tArea (sq.ft)\tPrice (in lakhs)\n");
+    printf("----------------------------------------------------------------------\n");
+    for(int i=0; i<count; i++) {
+        printf("%s\t\t%s\t\t%d\t%d\t\t%.2f\n", prop[i].property_type, prop[i].property_location, prop[i].bhk, prop[i].area, prop[i].price);
+    }
+}

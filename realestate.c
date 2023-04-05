@@ -70,3 +70,15 @@ void search_properties(struct property *prop, int count) {
         }
     }
 }
+
+// function to buy or sell property
+void buy_or_sell(struct property *prop, int count) {
+    int choice, index;
+    char location[50];
+    float price;
+    printf("\nEnter your choice:\n");
+    printf("1. Buy Property\n");
+    printf("2. Sell Property\n");
+    scanf("%d", &choice);
+    if(choice == 1) {
+        printf("\nEnter property details to buy:\n");

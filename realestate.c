@@ -117,3 +117,26 @@ void buy_or_sell(struct property *prop, int count) {
         printf("\nInvalid choice.\n");
     }
 }
+
+// function to edit property details
+void edit_record(struct property *prop, int count) {
+    int index;
+    printf("\nEnter index of property to edit: ");
+    scanf("%d", &index);
+    if(index >= 0 && index < count) {
+        printf("\nEnter new property details:\n");
+        printf("Property Type: ");
+        scanf("%s", prop[index].property_type);
+        printf("Property Location: ");
+        scanf(" %[^\n]", prop[index].property_location);
+        printf("BHK: ");
+        scanf("%d", &prop[index].bhk);
+        printf("Area (in sq.ft): ");
+        scanf("%d", &prop[index].area);
+        printf("Price (in lakhs): ");
+        scanf("%f", &prop[index].price);
+        printf("\nRecord updated successfully!\n");
+    } else {
+        printf("\nInvalid index.\n");
+    }
+}

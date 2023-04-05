@@ -82,3 +82,38 @@ void buy_or_sell(struct property *prop, int count) {
     scanf("%d", &choice);
     if(choice == 1) {
         printf("\nEnter property details to buy:\n");
+        printf("Location: ");
+        scanf(" %[^\n]", location);
+        printf("Price (in lakhs): ");
+        scanf("%f", &price);
+        for(int i=0; i<count; i++) {
+            if(strcmp(prop[i].property_location, location) == 0 && prop[i].price == price) {
+                printf("\nCongratulations! You have bought the following property:\n");
+                printf("%s\t\t%s\t\t%d\t%d\t\t%.2f\n", prop[i].property_type, prop[i].property_location, prop[i].bhk, prop[i].area, prop[i].price);
+                return;
+            }
+        }
+        printf("\nSorry, property not found.\n");
+    } else if(choice == 2) {
+        printf("\nEnter property details to sell:\n");
+        printf("Location: ");
+        scanf(" %[^\n]", location);
+        printf("Price (in lakhs): ");
+        scanf("%f", &price);
+        for(int i=0; i<count; i++) {
+            if(strcmp(prop[i].property_location, location) == 0 && prop[i].price == price) {
+                printf("\nCongratulations! You have sold the following property:\n");
+                printf("%s\t\t%s\t\t%d\t%d\t\t%.2f\n", prop[i].property_type, prop[i].property_location, prop[i].bhk, prop[i].area, prop[i].price);
+                // delete record
+                for(int j=i; j<count-1; j++) {
+                    prop[j] = prop[j+1];
+                }
+                (*count)--;
+                return;
+            }
+        }
+        printf("\nSorry, property not found.\n");
+    } else {
+        printf("\nInvalid choice.\n");
+    }
+}

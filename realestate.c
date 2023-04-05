@@ -45,3 +45,28 @@ void display_properties(struct property *prop, int count) {
         printf("%s\t\t%s\t\t%d\t%d\t\t%.2f\n", prop[i].property_type, prop[i].property_location, prop[i].bhk, prop[i].area, prop[i].price);
     }
 }
+
+// function to search properties based on user inputs
+void search_properties(struct property *prop, int count) {
+    char location[50];
+    int bhk, min_area;
+    float max_price;
+    printf("\nEnter search criteria:\n");
+    printf("Location: ");
+    scanf(" %[^\n]", location);
+    printf("BHK: ");
+    scanf("%d", &bhk);
+    printf("Minimum Area (in sq.ft): ");
+    scanf("%d", &min_area);
+    printf("Maximum Price (in lakhs): ");
+    scanf("%f", &max_price);
+    printf("\nSearch Results:\n");
+    printf("----------------------------------------------------------------------\n");
+    printf("Property Type\tLocation\t\tBHK\tArea (sq.ft)\tPrice (in lakhs)\n");
+    printf("----------------------------------------------------------------------\n");
+    for(int i=0; i<count; i++) {
+        if(strcmp(prop[i].property_location, location) == 0 && prop[i].bhk == bhk && prop[i].area >= min_area && prop[i].price <= max_price) {
+            printf("%s\t\t%s\t\t%d\t%d\t\t%.2f\n", prop[i].property_type, prop[i].property_location, prop[i].bhk, prop[i].area, prop[i].price);
+        }
+    }
+}

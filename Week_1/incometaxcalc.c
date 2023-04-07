@@ -30,3 +30,18 @@ void addRecord() {
     taxPayers[numTaxPayers++] = tp;
     printf("Record added successfully.\n");
 }
+
+void listRecords() {
+    if (numTaxPayers == 0) {
+        printf("\nNo records found.\n");
+        return;
+    }
+    printf("\nTax Payer Records:\n");
+    printf("--------------------------------------------------\n");
+    printf("%-20s %-20s %-20s\n", "Name", "Income", "Income Tax");
+    printf("--------------------------------------------------\n");
+    for (int i = 0; i < numTaxPayers; i++) {
+        struct taxpayer tp = taxPayers[i];
+        printf("%-20s %-20.2f %-20.2f\n", tp.name, tp.income, tp.tax);
+    }
+}

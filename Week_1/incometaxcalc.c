@@ -45,3 +45,21 @@ void listRecords() {
         printf("%-20s %-20.2f %-20.2f\n", tp.name, tp.income, tp.tax);
     }
 }
+
+void searchRecord() {
+    char name[50];
+    printf("\nEnter name to search: ");
+    scanf("%s", name);
+    for (int i = 0; i < numTaxPayers; i++) {
+        struct taxpayer tp = taxPayers[i];
+        if (strcmp(tp.name, name) == 0) {
+            printf("\nRecord found:\n");
+            printf("--------------------------------------------------\n");
+            printf("%-20s %-20s %-20s\n", "Name", "Income", "Income Tax");
+            printf("--------------------------------------------------\n");
+            printf("%-20s %-20.2f %-20.2f\n", tp.name, tp.income, tp.tax);
+            return;
+        }
+    }
+    printf("\nRecord not found.\n");
+}

@@ -112,3 +112,19 @@ void editRecord()
         }
     }
     printf("\nRecord not found.\n");
+    }
+    
+    void deleteRecord() {
+    char name[50];
+    printf("\nEnter name to delete: ");
+    scanf("%s", name);
+    for (int i = 0; i < numTaxPayers; i++) {
+    struct taxpayer tp = taxPayers[i];
+    if (strcmp(tp.name, name) == 0) {
+    for (int j = i; j < numTaxPayers - 1; j++) {
+    taxPayers[j] = taxPayers[j + 1];
+    }
+    numTaxPayers--;
+    printf("\nRecord deleted successfully.\n");
+    return;
+    }

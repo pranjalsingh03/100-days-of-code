@@ -128,3 +128,19 @@ void editRecord()
     printf("\nRecord deleted successfully.\n");
     return;
     }
+    }
+    printf("\nRecord not found.\n");
+    }
+    
+    int main() {
+    int choice;
+    do {
+    printf("\n1. Add new record");
+    printf("\n2. List all taxpayers");
+    printf("\n3. Search record");
+    printf("\n4. Edit record");
+    printf("\n5. Delete record");
+    printf("\n0. Exit");
+    printf("\nEnter your choice: ");
+    scanf("%d", &choice);
+    switch (choice) {

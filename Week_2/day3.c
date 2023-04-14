@@ -96,7 +96,7 @@ void editRecord()
             }
             else if (tp.income > 250000 && tp.income <= 500000)
             {
-                tp.tax = (tp.income - 250000) * 0.05
+                tp.tax = (tp.income - 250000) * 0.05;
             }
             else if (tp.income > 500000 && tp.income <= 1000000)
             {
@@ -143,4 +143,28 @@ void editRecord()
     printf("\n0. Exit");
     printf("\nEnter your choice: ");
     scanf("%d", &choice);
-    switch (choice) {
+    switch (choice) {case 1:
+    addRecord();
+    break;
+    case 2:
+    listRecords();
+    break;
+    case 3:
+    searchRecord();
+    break;
+    case 4:
+    editRecord();
+    break;
+    case 5:
+    deleteRecord();
+    break;
+    case 0:
+    printf("\nExiting program.\n");
+    break;
+    default:
+    printf("\nInvalid choice. Please try again.\n");
+    break;
+    }
+    } while (choice != 0);
+    return 0;
+    }

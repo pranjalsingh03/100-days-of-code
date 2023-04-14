@@ -13,6 +13,43 @@ struct taxpayer
 struct taxpayer taxPayers[MAX_TAXPAYERS];
 int numTaxPayers = 0;
 
+int main() {
+    int choice;
+    do {
+    printf("\n1. Add new record");
+    printf("\n2. List all taxpayers");
+    printf("\n3. Search record");
+    printf("\n4. Edit record");
+    printf("\n5. Delete record");
+    printf("\n0. Exit");
+    printf("\nEnter your choice: ");
+    scanf("%d", &choice);
+    switch (choice) {case 1:
+    addRecord();
+    break;
+    case 2:
+    listRecords();
+    break;
+    case 3:
+    searchRecord();
+    break;
+    case 4:
+    editRecord();
+    break;
+    case 5:
+    deleteRecord();
+    break;
+    case 0:
+    printf("\nExiting program.\n");
+    break;
+    default:
+    printf("\nInvalid choice. Please try again.\n");
+    break;
+    }
+    } while (choice != 0);
+    return 0;
+    }
+
 void addRecord()
 {
     struct taxpayer tp;
@@ -132,39 +169,4 @@ void editRecord()
     printf("\nRecord not found.\n");
     }
     
-    int main() {
-    int choice;
-    do {
-    printf("\n1. Add new record");
-    printf("\n2. List all taxpayers");
-    printf("\n3. Search record");
-    printf("\n4. Edit record");
-    printf("\n5. Delete record");
-    printf("\n0. Exit");
-    printf("\nEnter your choice: ");
-    scanf("%d", &choice);
-    switch (choice) {case 1:
-    addRecord();
-    break;
-    case 2:
-    listRecords();
-    break;
-    case 3:
-    searchRecord();
-    break;
-    case 4:
-    editRecord();
-    break;
-    case 5:
-    deleteRecord();
-    break;
-    case 0:
-    printf("\nExiting program.\n");
-    break;
-    default:
-    printf("\nInvalid choice. Please try again.\n");
-    break;
-    }
-    } while (choice != 0);
-    return 0;
-    }
+    

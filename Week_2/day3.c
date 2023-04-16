@@ -168,5 +168,3 @@ void editRecord()
     }
     printf("\nRecord not found.\n");
     }
-    
-    

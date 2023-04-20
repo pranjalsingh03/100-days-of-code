@@ -81,3 +81,23 @@ void view_account_status(BankAccount *account) {
     printf("Account Name: %s\n", account->account_name);
     printf("Account Balance: $%.2f\n", account->balance);
 }
+
+
+void open_account(BankAccount *account) {
+    printf("\n-----------------------------\n");
+    printf("Open Account\n");
+    printf("-----------------------------\n");
+
+    // Get the account number from the user
+    printf("Enter Account Number: ");
+    scanf("%s", account->account_number);
+
+    // Get the account name from the user
+    printf("Enter Account Name: ");
+    scanf("%s", account->account_name);
+
+    // Set the initial balance to zero
+    account->balance = 0.0;
+
+    printf("Account Created Successfully!\n");
+}

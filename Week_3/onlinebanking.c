@@ -128,3 +128,59 @@ void change_password(BankAccount *account) {
 
     printf("Password Changed Successfully!\n");
 }
+
+void manage_payee(BankAccount *account) {
+    printf("\n-----------------------------\n");
+    printf("Manage Payees\n");
+    printf("-----------------------------\n");
+
+    // Prompt the user to add or remove a payee
+    printf("Do you want to add or remove a payee?\n");
+    printf("Enter '1' to add a payee or '2' to remove a payee: ");
+    int choice;
+    scanf("%d", &choice);
+
+    // Handle the user's choice
+    switch (choice) {
+        case 1:
+            // Add a new payee
+            printf("Enter Payee Name: ");
+            char payee_name[MAX_NAME_LENGTH];
+            scanf("%s", payee_name);
+            printf("Enter Payee Account Number: ");
+            char payee_account_number[MAX_ACCOUNT_NUMBER_LENGTH];
+            scanf("%s", payee_account_number);
+            add_payee(account, payee_name, payee_account_number);
+            break;
+        case 2:
+            // Remove an existing payee
+            printf("Enter Payee Name: ");
+            char payee_name_to_remove[MAX_NAME_LENGTH];
+            scanf("%s", payee_name_to_remove);
+            remove_payee(account, payee_name_to_remove);
+            break;
+        default:
+            printf("Invalid Choice. Please try again.\n");
+            break;
+    }
+}
+
+
+void view_statement(BankAccount *account) {
+    printf("\n-----------------------------\n");
+    printf("View Statement\n");
+    printf("-----------------------------\n");
+
+    // Print the account details
+    printf("Account Number: %s\n", account->account_number);
+    printf("Account Name: %s\n", account->account_name);
+    printf("Current Balance: %.2f\n", account->balance);
+
+    // Print the transaction history
+    printf("Transaction History:\n");
+    printf("Date\t\tType\tAmount\tBalance\n");
+    for (int i = 0; i < account->num_transactions; i++) {
+        printf("%s\t%s\t%.2f\t%.2f\n", account->transactions[i].date, account->transactions[i].type,
+               account->transactions[i].amount, account->transactions[i].balance);
+    }
+}

@@ -58,3 +58,26 @@ int main() {
 
     return 0;
 }
+
+
+void display_menu() {
+    printf("\n-----------------------------\n");
+    printf("Online Banking System\n");
+    printf("-----------------------------\n");
+    printf("1. View Account Status\n");
+    printf("2. Open Account\n");
+    printf("3. Change Password\n");
+    printf("4. Manage Payee\n");
+    printf("5. View Statement\n");
+    printf("6. Exit\n");
+}
+
+// Define the view_account_status function
+void view_account_status(BankAccount *account) {
+    printf("\n-----------------------------\n");
+    printf("Account Status\n");
+    printf("-----------------------------\n");
+    printf("Account Number: %s\n", account->account_number);
+    printf("Account Name: %s\n", account->account_name);
+    printf("Account Balance: $%.2f\n", account->balance);
+}

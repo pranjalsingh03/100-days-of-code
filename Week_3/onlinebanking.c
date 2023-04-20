@@ -101,3 +101,30 @@ void open_account(BankAccount *account) {
 
     printf("Account Created Successfully!\n");
 }
+
+void change_password(BankAccount *account) {
+    printf("\n-----------------------------\n");
+    printf("Change Password\n");
+    printf("-----------------------------\n");
+
+    // Get the old password from the user
+    printf("Enter Old Password: ");
+    char old_password[MAX_PASSWORD_LENGTH];
+    scanf("%s", old_password);
+
+    // Compare the old password with the stored password
+    if (strcmp(old_password, account->password) != 0) {
+        printf("Incorrect Password. Please try again.\n");
+        return;
+    }
+
+    // Get the new password from the user
+    printf("Enter New Password: ");
+    char new_password[MAX_PASSWORD_LENGTH];
+    scanf("%s", new_password);
+
+    // Store the new password in the account object
+    strcpy(account->password, new_password);
+
+    printf("Password Changed Successfully!\n");
+}

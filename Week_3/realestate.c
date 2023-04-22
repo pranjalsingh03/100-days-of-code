@@ -97,7 +97,7 @@ void load_properties()
 void save_properties()
 {
 	int i;
-    FILE *fp = fopen("properties.txt", "w");
+    FILE *fp = fopen("properties.txt", "a");
 	for ( i = 0; i < num_properties; i++)
     {
         fprintf(fp, "%d %s %s %d %d %d %s\n", properties[i].id, properties[i].type, properties[i].location, properties[i].area, properties[i].bedrooms, properties[i].budget, properties[i].status);
@@ -243,48 +243,34 @@ void sell(int id) {
     struct property p;
     int found = 0;
 
-    // open the properties file in read mode
     fp = fopen("properties.txt", "r");
     if (fp == NULL) {
         printf("Error: Could not open file.\n");
         exit(1);
     }
 
-    // create a temporary file in write mode
     temp = fopen("temp.txt", "w");
     if (temp == NULL) {
         printf("Error: Could not create temporary file.\n");
         exit(1);
     }
 
-    // read each property from the file
     while (fread(&p, sizeof(struct property), 1, fp) == 1) {
-        // check if the id matches the property to be sold
         if (p.id == id) {
-            // mark the property as sold
+
             strcpy(p.status, "Sold");
             found = 1;
         }
 
-        // write the property to the temporary file
         fwrite(&p, sizeof(struct property), 1, temp);
     }
 
-    // close both files
     fclose(fp);
     fclose(temp);
 
-    // delete the original file
     remove("properties.txt");
 
-    // rename the temporary file to the original file name
     rename("temp.txt", "properties.txt");
-
-    if (found) {
-        printf("Property with ID %d has been marked as sold.\n", id);
-    } else {
-        printf("Error: Property with ID %d not found.\n", id);
-    }
 }
 void delete_property()
 {

@@ -1,2 +1,14 @@
 6422180 à@ ¼şa 8 1984266621 1984266595 ÙK1à@
-1 lang rebvet 2424 3
+1 lang rebvet 2424 3 1984266595 ÙK1à@
+1 land phagwara 1200 3 120000 Available
+2 land p6422180 à@ ¼şa 8 1984266621 1984266595 ÙK1à@
+1 lang rebvet 2424 3 1984266595 ÙK1à@
+1 land phagwara 1200 3 120000 Sold
+2 land pah 236422180 à@ ¼şa 8 1984266621 1984266595 ÙK1à@
+1 lang rebvet 2424 3 1984266595 ÙK1à@
+1 land phagwara 1200 3 120000 Available
+2 land pah 230 2 20000 Available
+6422180 à@ ¼şa 8 1984266621 1984266595 ÙK1à@
+1 lang rebvet 2424 3 1984266595 ÙK1à@
+1 land phagwara 1200 3 120000 Available
+2 land pah 230 2 20000 Available

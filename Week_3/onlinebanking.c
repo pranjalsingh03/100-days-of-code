@@ -3,10 +3,33 @@
 #include <string.h>
 
 // Define a structure for bank account details
+
+#define MAX_ACCOUNT_NUMBER_LENGTH 10
+#define MAX_ACCOUNT_NAME_LENGTH 50
+#define MAX_PASSWORD_LENGTH 10
+#define MAX_PAYEE 10
+#define MAX_ACCOUNTS 100 
+#define MAX_NAME_LENGTH 50
+
 typedef struct {
-    char account_number[20];
-    char account_name[50];
+    char date[20]; // or any other desired length
+    char type[MAX_TRANSACTION_TYPE_LENGTH + 1]; // add 1 for null terminator
+    float amount;
     float balance;
+} Transaction;
+typedef struct {
+    // char account_number[20];
+    // char account_name[50];
+    float balance;
+    char account_number[MAX_ACCOUNT_NUMBER_LENGTH + 1];
+    char account_name[MAX_ACCOUNT_NAME_LENGTH + 1];
+    char password[MAX_PASSWORD_LENGTH + 1];
+    // char payee[MAX_PAYEE][MAX_NAME_LENGTH + 1];
+    int num_payee;
+    Transaction transactions[100];
+    int num_transactions;
+    int transactions;
+    
 } BankAccount;
 
 // Function prototypes
@@ -16,14 +39,17 @@ void open_account(BankAccount *account);
 void change_password(BankAccount *account);
 void manage_payee(BankAccount *account);
 void view_statement(BankAccount *account);
+void add_payee(BankAccount *account)
 
 // Sample main function
 int main() {
     // Create a bank account object
+    // BankAccount accounts[MAX_ACCOUNTS]; // declare an array of BankAccount objects
+    // int num_accounts = 0;
     BankAccount account;
-    strcpy(account.account_number, "1234567890");
-    strcpy(account.account_name, "John Doe");
-    account.balance = 5000.0;
+    // strcpy(account.account_number, "1234567890");
+    // strcpy(account.account_name, "John Doe");
+    // account.balance = 5000.0;
 
     // Display the main menu and get the user's choice
     int choice;
@@ -127,6 +153,23 @@ void change_password(BankAccount *account) {
     strcpy(account->password, new_password);
 
     printf("Password Changed Successfully!\n");
+}
+
+void add_payee(BankAccount *account) {
+    printf("Enter the payee name: ");
+    char payee_name[100]; // or any other desired maximum length
+    scanf("%s", payee_name);
+    
+    printf("Enter the payee account number: ");
+    char payee_account_number[MAX_ACCOUNT_NUMBER_LENGTH + 1]; // add 1 for null terminator
+    scanf("%s", payee_account_number);
+    
+    Payee new_payee = {payee_name, payee_account_number};
+    
+    account->payees[account->num_payees] = new_payee;
+    account->num_payees++;
+    
+    printf("Payee added successfully.\n");
 }
 
 void manage_payee(BankAccount *account) {

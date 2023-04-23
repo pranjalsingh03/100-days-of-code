@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -96,9 +97,9 @@ void load_properties()
 
 void save_properties()
 {
-	int i;
+    int i;
     FILE *fp = fopen("properties.txt", "a");
-	for ( i = 0; i < num_properties; i++)
+    for (i = 0; i < num_properties; i++)
     {
         fprintf(fp, "%d %s %s %d %d %d %s\n", properties[i].id, properties[i].type, properties[i].location, properties[i].area, properties[i].bedrooms, properties[i].budget, properties[i].status);
     }
@@ -130,10 +131,10 @@ void add_property()
 
 void display_properties()
 {
-	int i;
+    int i;
     printf("ID  Type              Location          Area  Bedrooms  Budget  Status\n");
-    printf("---------------------------------------------------------------------\n");
-    for ( i = 0; i < num_properties; i++)
+    printf("------------------------------------------------------------------------\n");
+    for (i = 0; i < num_properties; i++)
     {
         if (strcmp(properties[i].status, "Available") == 0)
         {
@@ -144,7 +145,7 @@ void display_properties()
 
 void search_properties()
 {
-	int i ;
+    int i;
     int min_area, min_bedrooms, max_budget;
     printf("Enter search criteria:\n");
     printf("Minimum area: ");
@@ -155,9 +156,9 @@ void search_properties()
     scanf("%d", &max_budget);
 
     printf("Search results:\n");
-    printf("ID  Type              Location          Area  Bedrooms  Budget  Status\n");
+    printf("ID Type Location Area Bedrooms Budget Status\n");
     printf("---------------------------------------------------------------------\n");
-    for (i= 0; i < num_properties; i++)
+    for (i = 0; i < num_properties; i++)
     {
         if (strcmp(properties[i].status, "Available") == 0 &&
             properties[i].area >= min_area &&
@@ -173,7 +174,7 @@ void search_properties()
 
 void buy_property()
 {
-	int i;
+    int i;
     int id;
     printf("Enter property ID: ");
     scanf("%d", &id);
@@ -193,7 +194,7 @@ void buy_property()
 
 void edit_property()
 {
-    int id,i;
+    int id, i;
     printf("Enter property ID: ");
     scanf("%d", &id);
 
@@ -220,43 +221,50 @@ void edit_property()
     printf("Property not found.\n");
 }
 
-void sell_property() {
-   int i,id;
-   printf("Enter property ID: ");
-   scanf("%d", &id);
+void sell_property()
+{
+    int id;
+    printf("Enter property ID: ");
+    scanf("%d", &id);
     sell(id);
-   for ( i = 0; i < num_properties; i++) {
-      if (properties[i].id == id && strcmp(properties[i].status, "Sold") == 0) {
-         strcpy(properties[i].status, "Available");
-         save_properties();
-         printf("Property sold successfully.\n");
-         return;
-      }
-   }
-   printf("Property not found or not sold.\n");
+    for (int i = 0; i < num_properties; i++)
+    {
+        if (properties[i].id == id && strcmp(properties[i].status, "Sold") == 0)
+        {
+            strcpy(properties[i].status, "Available");
+            save_properties();
+            printf("Property sold successfully.\n");
+            return;
+        }
+    }
+    printf("Property not found or not sold.\n");
 }
 
-
-void sell(int id) {
+void sell(int id)
+{
     FILE *fp;
     FILE *temp;
     struct property p;
     int found = 0;
 
     fp = fopen("properties.txt", "r");
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Error: Could not open file.\n");
         exit(1);
     }
 
     temp = fopen("temp.txt", "w");
-    if (temp == NULL) {
+    if (temp == NULL)
+    {
         printf("Error: Could not create temporary file.\n");
         exit(1);
     }
 
-    while (fread(&p, sizeof(struct property), 1, fp) == 1) {
-        if (p.id == id) {
+    while (fread(&p, sizeof(struct property), 1, fp) == 1)
+    {
+        if (p.id == id)
+        {
 
             strcpy(p.status, "Sold");
             found = 1;
@@ -274,7 +282,7 @@ void sell(int id) {
 }
 void delete_property()
 {
-    int id,i,j;
+    int id, i, j;
     printf("Enter property ID: ");
     scanf("%d", &id);
 

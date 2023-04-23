@@ -616,7 +616,7 @@ void display_properties()
 {
 int i;
 printf("ID  Type              Location          Area  Bedrooms  Budget  Status\n");
-printf("---------------------------------------------------------------------\n");
+printf("------------------------------------------------------------------------\n");
 for ( i = 0; i < num_properties; i++)
 {
 if (strcmp(properties[i].status, "Available") == 0)

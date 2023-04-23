@@ -221,11 +221,11 @@ void edit_property()
 }
 
 void sell_property() {
-   int id;
+   int i,id;
    printf("Enter property ID: ");
    scanf("%d", &id);
     sell(id);
-   for (int i = 0; i < num_properties; i++) {
+   for ( i = 0; i < num_properties; i++) {
       if (properties[i].id == id && strcmp(properties[i].status, "Sold") == 0) {
          strcpy(properties[i].status, "Available");
          save_properties();

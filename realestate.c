@@ -615,7 +615,7 @@ printf("Property added successfully.\n");
 void display_properties()
 {
 int i;
-printf("ID Type Location Area Bedrooms Budget Status\n");
+printf("ID  Type              Location          Area  Bedrooms  Budget  Status\n");
 printf("---------------------------------------------------------------------\n");
 for ( i = 0; i < num_properties; i++)
 {

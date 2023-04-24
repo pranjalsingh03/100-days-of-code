@@ -223,11 +223,11 @@ void edit_property()
 
 void sell_property()
 {
-    int id;
+    int id,i;
     printf("Enter property ID: ");
     scanf("%d", &id);
     sell(id);
-    for (int i = 0; i < num_properties; i++)
+    for (i = 0; i < num_properties; i++)
     {
         if (properties[i].id == id && strcmp(properties[i].status, "Sold") == 0)
         {

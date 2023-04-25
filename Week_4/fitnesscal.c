@@ -32,3 +32,100 @@ int main()
     bmi = ((weight) / (height * height)); // BMI formula
 
     vo2max = (15 * ((maximum_heart_rate / minimum_heart_rate))); // VO2max formula
+    if (age <= 1)
+    {
+        printf("\nBMI value cannot be concluded for an individual having age of 1 year or less");
+    }
+
+    if (age >= 2 && age < 20)
+    {
+
+        if (bmi < 5)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : Underweight", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+        if (bmi >= 5 && bmi <= 85)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : Healthy Weight", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+        if (bmi >= 85 && bmi <= 95)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : At risk of overweight", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+        if (bmi > 95)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : Overweight", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+    }
+
+    ///--------------------------------------------====================================================================--------------------------------------------///
+    ///--------------------------------------------End of Conditions for different BMI values for age group of 1 & 2-20--------------------------------------------///
+    ///--------------------------------------------====================================================================--------------------------------------------///
+
+    ///--------------------------------------------=================================================================--------------------------------------------///
+    ///--------------------------------------------Conditions for different BMI values for age group of 20 & greater--------------------------------------------///
+    ///--------------------------------------------=================================================================--------------------------------------------///
+    if (age >= 20)
+    {
+
+        if (bmi < 18.5)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : Underweight", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+        if (bmi >= 18.5 && bmi <= 24.9)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : Healthy weight", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+        if (bmi >= 25 && bmi <= 29.9)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : Overweight", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+        if (bmi >= 30)
+        {
+            details(name, age, gender, weight, height);
+            printf("\n%c BMI           : %.2f kg/m%c", n, bmi, o);
+            printf("\n%c Weight Status : Obesity", n);
+            vo2max_calculations(gender, age, maximum_heart_rate, minimum_heart_rate, vo2max); // Function call for displaying VO2max related information
+        }
+    }
+}
+
+///--------------------------------------------========================================================================--------------------------------------------///
+///--------------------------------------------End of Conditions for different BMI values for age group of 20 & greater--------------------------------------------///
+///--------------------------------------------========================================================================--------------------------------------------///
+
+///--------------------------------------------==================================--------------------------------------------///
+///--------------------------------------------<<<End of Body of main function>>>--------------------------------------------///
+///--------------------------------------------==================================--------------------------------------------///
+
+///--------------------------------------------========================================================================--------------------------------------------///
+///--------------------------------------------Function for calculation of VO2max and displaying VO2max related details--------------------------------------------///
+///--------------------------------------------========================================================================--------------------------------------------///
+
+void vo2max_calculations(char sex, int age, int max_heart_rate, float min_heart_rate, float vo2max)
+{
+
+    ///--------------------------------------------==================================================--------------------------------------------///
+    ///--------------------------------------------Conditions for different VO2max levels for females--------------------------------------------///
+    ///--------------------------------------------==================================================--------------------------------------------///

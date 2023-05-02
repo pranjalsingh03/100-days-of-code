@@ -30,6 +30,7 @@ questions = [
 ]
 
 # Define a function to ask a question and return the user's answer
+
 def ask_question(question)
   puts question[:question]
   question[:answers].each_with_index do |answer, index|
@@ -40,6 +41,7 @@ def ask_question(question)
 end
 
 # Define a function to grade the user's answers and return their score
+
 def grade_quiz(questions)
   score = 0
   questions.each do |question|
@@ -55,4 +57,5 @@ def grade_quiz(questions)
 end
 
 # Call the grade_quiz function to start the quiz
+
 grade_quiz(questions)

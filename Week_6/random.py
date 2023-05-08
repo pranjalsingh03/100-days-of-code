@@ -14,3 +14,7 @@ def generate_email_password():
     password = ''.join(random.choices(password_characters, k=password_length))
 
     return email, password
+
+email, password = generate_email_password()
+print(f"Email: {email}")
+print(f"Password: {password}")

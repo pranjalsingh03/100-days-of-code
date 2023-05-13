@@ -49,3 +49,31 @@ def encode():
         encoded = chr(new_ascii)
         encoded_cipher = encoded_cipher + encoded
     print("Encoded text: " + encoded_cipher)
+
+def decode():
+    cipher = input("\n[>] Enter your cipher text: ")
+    print("Posiblities of cipher text are: \n")
+    cipher = cipher.lower()
+    for i in range(1, 26):
+        decoded = ""
+        decoded_cipher = ""
+        for char in cipher:
+            ascii = ord(char)
+            if ascii < 97:
+                new_ascii = ascii
+            else:
+                if ascii > 122:
+                    new_ascii = ascii
+                else:
+                    new_ascii = ascii - int(i)
+                    if new_ascii < 97:
+                      new_ascii = new_ascii + 26
+                    else:
+                        new_ascii = new_ascii
+            decoded = chr(new_ascii)
+            decoded_cipher = decoded_cipher + decoded
+        print("\n" + decoded_cipher)
+
+
+if __name__ == '__main__':
+    main()

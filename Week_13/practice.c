@@ -25,3 +25,15 @@ int verifyBitcoinProfile(const char* username, const char* publicKey, const char
         return 0;
     }
 }
+
+int main() {
+    // Sample data for verification
+    const char* username = "JohnDoe";
+    const char* publicKey = "04a2e4b37c..."; // Public key in hexadecimal format
+    const char* signature = "30450221008d..."; // Signature in hexadecimal format
+
+    // Verify Bitcoin profile
+    int result = verifyBitcoinProfile(username, publicKey, signature);
+
+    return result;
+}
